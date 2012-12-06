@@ -1,4 +1,4 @@
 digit-recognizer-trikaggle
 ==========================
 
-Private repo for our first knowledge competition
+Repo for our first knowledge competition
