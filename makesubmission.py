@@ -7,14 +7,14 @@ def main():
     # For timing
     start = time.clock()
 
-    # Create the training set; skip the header row with [1:] (64 bit floats)
-    dataset = genfromtxt(open('data/train.csv','r'), delimiter = ',', dtype = 'f8')[1:]    
+    # Create the training set; skip the header row with [1:] (64 bit ints)
+    dataset = genfromtxt(open('data/train.csv','r'), delimiter = ',', dtype = 'int64')[1:]
     # Pulls out classifer labels
     target = [x[0] for x in dataset]
     # Pull out training data
     train = [x[1:] for x in dataset]
     # Create the test set
-    test = genfromtxt(open('data/test.csv','r'), delimiter = ',', dtype = 'f8')[1:]
+    test = genfromtxt(open('data/test.csv','r'), delimiter = ',', dtype = 'int64')[1:]
 
     # Create and train the random forest classifier
     # - Use n_estimators to specify the number of trees in the random forest
@@ -26,10 +26,10 @@ def main():
 
     # Extract probability samples from built random forest classifer applied to test set
 
-    predicted = [x[1] for x in rf.predict(test)]
+    predicted = [rf.predict(test)]
 
     # Generate the submission csv by adding commas to the probability samples
-    savetxt('data/submission.csv', predicted_probs, delimiter = ',', fmt = '%f')
+    savetxt('data/submission.csv', np.transpose(predicted), delimiter = ',', fmt = '%i')
 
     # Print time to run
     end = time.clock()
