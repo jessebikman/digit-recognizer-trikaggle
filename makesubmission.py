@@ -21,7 +21,7 @@ def main():
     # - Use n_jobs to assign workers to different CPU cores
     rf = RandomForestClassifier(n_jobs = 2, n_estimators = 100)
     # Build a forest of trees from the training set with target 
-    # values that correspond to classification classes
+    # values that correspond to classification classes0.96643
     rf.fit(train, target[0:])
 
     # Extract probability samples from built random forest classifer applied to test set
