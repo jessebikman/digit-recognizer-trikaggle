@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from numpy import genfromtxt, savetxt
+from numpy import genfromtxt, savetxt, transpose
 import time
 
 def main():
@@ -29,7 +29,7 @@ def main():
     predicted = [rf.predict(test)]
 
     # Generate the submission csv by adding commas to the probability samples
-    savetxt('data/submission.csv', np.transpose(predicted), delimiter = ',', fmt = '%i')
+    savetxt('data/submission.csv', transpose(predicted), delimiter = ',', fmt = '%i')
 
     # Print time to run
     end = time.clock()
