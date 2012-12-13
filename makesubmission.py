@@ -19,16 +19,14 @@ def main():
     # Create and train the random forest classifier
     # - Use n_estimators to specify the number of trees in the random forest
     # - Use n_jobs to assign workers to different CPU cores
-    rf = RandomForestClassifier(n_jobs = 4, n_estimators = 500)
+    rf = RandomForestClassifier(n_jobs = 2, n_estimators = 100)
     # Build a forest of trees from the training set with target 
     # values that correspond to classification classes
     rf.fit(train, target[0:])
 
     # Extract probability samples from built random forest classifer applied to test set
 
-    # In this case, the probability samples represents output from a likelihood function
-    # for a Bernoulli random distribution
-    predicted_probs = [x[1] for x in rf.predict_proba(test)]
+    predicted = [x[1] for x in rf.predict(test)]
 
     # Generate the submission csv by adding commas to the probability samples
     savetxt('data/submission.csv', predicted_probs, delimiter = ',', fmt = '%f')
